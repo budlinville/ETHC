@@ -1,6 +1,6 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "ETHC",
+  "description": "Ethereum unit converter. Easily convert from wei to Ether to tether, and all units inbetween.",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
@@ -9,13 +9,7 @@
   },
 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "permissions": [
-    "activeTab"
-  ],
-  
   "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "128": "128.png"
   }
 }

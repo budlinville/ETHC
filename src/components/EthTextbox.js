@@ -1,27 +1,72 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import { TextField, InputAdornment } from '@mui/material';
+import { TextField, IconButton, InputAdornment } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import BigNumber from "bignumber.js";
 
-const EthTextbox = ({ id, name, factor, isPopular }) => {
+const CopyButton = ({ isPopular, unit, value }) => {
 	const classes = useStyles();
+	return (
+		<>
+			{isPopular ? <InputAdornment position="end">{unit}</InputAdornment> : '' }
+			<IconButton onClick={ () => navigator.clipboard.writeText(value) }>
+				<ContentCopyIcon className={classes.copyIcon} />
+			</IconButton>
+		</>
+	);
+};
+
+const EthTextbox = ({ id, name, factor, isPopular, wei, setWei }) => {
+	const classes = useStyles();
+
+	const displayValue = isNaN(wei) ? BigNumber(0) : wei.dividedBy(BigNumber(10).pow(factor));
+	const convertToWei = value => isNaN(value) ? BigNumber(0) : BigNumber(value).multipliedBy(BigNumber(10).pow(factor));
+
 	return (
 		<div>
 			<TextField
-				label={name}
-				id={id}
+				label={isPopular ? '' : name}
+				id={id.toString()}
+				sx={{ mt: 1 }}
+				value={displayValue}
+				className={classes.textbox}
+				onChange={ event => setWei(convertToWei(event.target.value))}
 				size='small'
-				sx={{ mt: 1, width: '75%' }}
 				InputProps={{
-					endAdornment: <InputAdornment position="end">{ name.toLowerCase() }</InputAdornment>
+					endAdornment: <CopyButton isPopular={isPopular} unit={name.toLowerCase()} value={displayValue} />,
+					_depr: { /*classes: { input: classes.textbox } */},
+					classes: isPopular ? {
+						root: classes.cssOutlinedInput,
+						focused: classes.cssFocused,
+						notchedOutline: classes.notchedOutline
+					} : {}
 				}}
 			/>
 		</div>
 	);
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
+	copyButton: {
+		height: '5px',
+		width: '5px'
+	},
+	copyIcon: {
+		transform: 'scale(0.6)'
+	},
 	textbox: {
+		width: '90%'
+	},
+	cssOutlinedInput: {
+		backgroundColor: '#FFE660 !important'
+	},
+	cssFocused: {
+		backgroundColor: '#FFD600 !important'
+	},
+	notchedOutline: {
+		borderWidth: '2px',
+    borderColor: 'gold !important'
 	}
-}));
+});
 
 export default EthTextbox;

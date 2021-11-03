@@ -55,8 +55,7 @@ const units = [
 	{
 		"id": 10,
 		"name": "Tether",
-		"factor": 30,
-		"isPopular": true
+		"factor": 30
 	}
 ]
 
