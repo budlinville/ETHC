@@ -7,7 +7,7 @@ const Header = () => {
   return (
         <Toolbar className={ classes.header } style={{ minHeight: '30px' }}>
 					<IconButton onClick={ () => {} }>
-						<img src="logo_color_32.png" alt="logo" className={classes.logo} />
+						<img src="ethc.svg" alt="logo" className={classes.logo} />
 					</IconButton>
         </Toolbar>
   );
@@ -15,12 +15,15 @@ const Header = () => {
 
 const useStyles = makeStyles(theme => ({
 	header: {
-		backgroundColor: '#256DAB',
+		backgroundColor: 'white',
 		display: 'flex',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		borderBottom: '1px solid #FF6D24'
 	},
 	logo: {
-		margin: '2px'
+		margin: '1px',
+		height: '35px',
+		width: '35px'
 	}
 }));
 

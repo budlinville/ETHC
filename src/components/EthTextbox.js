@@ -39,7 +39,9 @@ const EthTextbox = ({ id, name, factor, isPopular, wei, setWei }) => {
 						root: classes.cssOutlinedInput,
 						focused: classes.cssFocused,
 						notchedOutline: classes.notchedOutline
-					} : {}
+					} : {
+						notchedOutline: classes.notchedUnpopular
+					}
 				}}
 			/>
 		</div>
@@ -58,14 +60,16 @@ const useStyles = makeStyles({
 		width: '90%'
 	},
 	cssOutlinedInput: {
-		backgroundColor: '#FFE660 !important'
+		backgroundColor: '#14D94D !important'
 	},
 	cssFocused: {
-		backgroundColor: '#FFD600 !important'
+		backgroundColor: '#12C747 !important'
 	},
 	notchedOutline: {
-		borderWidth: '2px',
-    borderColor: 'gold !important'
+		border: '2px solid #00A330 !important'
+	},
+	notchedUnpopular: {
+		borderColor: '#FF6D24 !important'
 	}
 });
 
