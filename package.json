@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
+    "copy_manifest": " cp -f manifest.json ./build/manifest.json",
+    "build": "export INLINE_RUNTIME_CHUNK=false; react-scripts build; npm run copy_manifest;",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.161"
+    "@types/chrome": "^0.0.161",
+    "eslint": "^7.32.0"
   }
 }

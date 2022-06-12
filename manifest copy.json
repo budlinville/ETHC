@@ -1,0 +1,19 @@
+{
+  "name": "ETHC",
+  "description": "Ethereum unit converter",
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Click me, baby."
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "icons": {
+    "128": "128.png"
+  }
+}

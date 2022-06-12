@@ -3,7 +3,7 @@ const units = [
 		"id": 0,
 		"name": "Wei",
 		"factor": 0,
-		"isPopular": true
+		"highlighted": true
 	},
 	{
 		"id": 1,
@@ -19,7 +19,7 @@ const units = [
 		"id": 3,
 		"name": "Gwei",
 		"factor": 9,
-		"isPopular": true
+		"highlighted": true
 	},
 	{
 		"id": 4,
@@ -35,7 +35,7 @@ const units = [
 		"id": 6,
 		"name": "Ether",
 		"factor": 18,
-		"isPopular": true
+		"highlighted": true
 	},
 	{
 		"id": 7,

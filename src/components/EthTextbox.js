@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@mui/styles';
 import { TextField, IconButton, InputAdornment } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import BigNumber from "bignumber.js";
 
-const CopyButton = ({ isPopular, unit, value }) => {
+const CopyButton = ({ highlighted, unit, value }) => {
 	const classes = useStyles();
 	return (
 		<>
-			{isPopular ? <InputAdornment position="end">{unit}</InputAdornment> : '' }
+			{ highlighted
+				? <InputAdornment position="end">
+					{unit}
+				</InputAdornment>
+				: ''
+			}
 			<IconButton onClick={ () => navigator.clipboard.writeText(value) }>
 				<ContentCopyIcon className={classes.copyIcon} />
 			</IconButton>
@@ -16,7 +21,7 @@ const CopyButton = ({ isPopular, unit, value }) => {
 	);
 };
 
-const EthTextbox = ({ id, name, factor, isPopular, wei, setWei }) => {
+const EthTextbox = ({ id, name, factor, highlighted, wei, setWei }) => {
 	const classes = useStyles();
 
 	const displayValue = isNaN(wei) ? BigNumber(0) : wei.dividedBy(BigNumber(10).pow(factor));
@@ -25,7 +30,7 @@ const EthTextbox = ({ id, name, factor, isPopular, wei, setWei }) => {
 	return (
 		<div>
 			<TextField
-				label={isPopular ? '' : name}
+				label={highlighted ? '' : name}
 				id={id.toString()}
 				sx={{ mt: 1 }}
 				value={displayValue}
@@ -33,14 +38,15 @@ const EthTextbox = ({ id, name, factor, isPopular, wei, setWei }) => {
 				onChange={ event => setWei(convertToWei(event.target.value))}
 				size='small'
 				InputProps={{
-					endAdornment: <CopyButton isPopular={isPopular} unit={name.toLowerCase()} value={displayValue} />,
+					endAdornment: <CopyButton highlighted={highlighted} unit={name.toLowerCase()} value={displayValue} />,
 					_depr: { /*classes: { input: classes.textbox } */},
-					classes: isPopular ? {
-						root: classes.cssOutlinedInput,
+					classes: highlighted ? {
+						root: classes.cssRoot,
 						focused: classes.cssFocused,
 						notchedOutline: classes.notchedOutline
 					} : {
-						notchedOutline: classes.notchedUnpopular
+						focused: classes.cssFocusedNotHighlighted,
+						notchedOutline: classes.notchedNotHighlighted
 					}
 				}}
 			/>
@@ -57,19 +63,24 @@ const useStyles = makeStyles({
 		transform: 'scale(0.6)'
 	},
 	textbox: {
-		width: '90%'
+		width: '90%',
+		color: 'white'
 	},
-	cssOutlinedInput: {
-		backgroundColor: '#14D94D !important'
+	cssRoot: {
+		background: 'linear-gradient(transparent 0%, #1976d2 500%)',
+		color: 'white'
 	},
 	cssFocused: {
-		backgroundColor: '#12C747 !important'
+		background: 'linear-gradient(midnightblue -300%, transparent 90%)',
 	},
 	notchedOutline: {
-		border: '2px solid #00A330 !important'
+		border: '1px solid #d3d4db !important'
 	},
-	notchedUnpopular: {
-		borderColor: '#FF6D24 !important'
+	notchedNotHighlighted: {
+		borderColor: '#d3d4db !important'
+	},
+	cssFocusedNotHighlighted: {
+		background: 'linear-gradient(white -10%, #d3d4db 200%)',
 	}
 });
 
