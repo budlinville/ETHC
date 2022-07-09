@@ -48,11 +48,6 @@ const Settings = ({ setPage }) => {
                     Settings
                 </Typography>
             </div>
-
-            <Typography variant='h5'>
-                Favorites
-            </Typography>
-
             { data.map( unit => (
                 <FavoriteItem
                     checked={ favorites.includes(unit.id) }

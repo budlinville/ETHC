@@ -30,8 +30,7 @@ const Support = ({ setPage }) => {
             </a>
 
             <Typography variant='body1'>
-                If you have any requests for additional functionality,
-                please submit an issue on Github.
+                Please submit requests for additional functionality on Github.
             </Typography>
             <a href={GITHUB_LINK} target="_blank">
                 <button className={classes.button}>
@@ -68,7 +67,7 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer',
         border: '2px solid',
         padding: '0.5em 0.5em',
-        margin: '15px',
+        margin: '0.5em',
         boxShadow: '0 2px 0 0 black',
         position: 'relative',
         borderRadius: '5px',

@@ -15,8 +15,8 @@ const Header = ({ menuVisible, setMenuVisible, anchorEl, setAnchorEl }) => {
 	return (
 		<>
 			<Toolbar className={ classes.header } style={{ minHeight: '30px' }}>
-				<IconButton onClick={ handleIconClick } style={{ color: 'white' }}>
-					<img src="ethc.svg" alt="logo" className={classes.logo} />
+				<IconButton onClick={ handleIconClick } style={{ color: 'white', }}>
+					<img src="big.png" alt="logo" className={classes.logo} />
 				</IconButton>
 			</Toolbar>
 			<Menu visible = { menuVisible } anchorEl={anchorEl} />
@@ -29,12 +29,13 @@ const useStyles = makeStyles(theme => ({
 		background: 'linear-gradient(black 25%, midnightblue)',
 		display: 'flex',
 		justifyContent: 'center',
-		borderBottom: '1px solid #e1e3eb'
+		borderBottom: '1px solid #e1e3eb',
+		overflow: 'hidden',
 	},
 	logo: {
-		margin: '1px',
-		height: '35px',
-		width: '35px',
+		padding: 0,
+		height: 'auto',
+		width: '50px',
 	},
 	// iconHoverFocus: {
 	// 	"&:hover, &.Mui-focusVisible": { backgroundColor: "yellow" }
